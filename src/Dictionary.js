@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Results from "./Results";
 import "./Dictionary.css";
 
 
 export default function Dictionary() {
     let [searchWord, setSearchWord] = useState("");
+    let [results, setResults] = useState(null);
 
     function handleApi(response) {
-        console.log(response.data.meanings);
+        //console.log(response.data.meanings);
+        setResults(response.data);
     }
 
     function searchHandle(event) {
@@ -30,6 +33,7 @@ export default function Dictionary() {
                     className="w-50"
                     onChange={changeHandle}></input>
             </form>
+            <Results results={results}/>
         </section>
     );
 }
